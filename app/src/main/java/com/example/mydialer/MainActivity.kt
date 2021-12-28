@@ -17,7 +17,10 @@ import timber.log.Timber
 import java.net.HttpURLConnection
 import java.net.URL
 
-abstract class MainActivity() : AppCompatActivity() {
+class MainActivity() : AppCompatActivity() {
+    lateinit var contactsJson: ArrayList<Contact>
+    lateinit var contacts: ArrayList<Contact>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
@@ -57,7 +60,7 @@ abstract class MainActivity() : AppCompatActivity() {
         contacts.clear()
         if (!eText.text.isNullOrBlank()) {
             for (counter in contactsJson) {
-                if ((counter.name.conteins(eText.text)) or (counter.phone.conteins(eText.text)) or (counter.type.conteins(eText.text))) {
+                if ((counter.name.contains(eText.text)) or (counter.phone.contains(eText.text)) or (counter.type.contains(eText.text))) {
                     contacts.add(counter)
                 }
             }
